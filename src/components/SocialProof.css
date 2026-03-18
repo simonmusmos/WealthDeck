@@ -1,0 +1,39 @@
+.social-proof {
+  padding: 40px 0;
+  text-align: center;
+}
+
+.social-proof-inner {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Pulsing dot */
+.pulse-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--accent);
+  flex-shrink: 0;
+  animation: pulse 2.4s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.3; }
+}
+
+/* Text */
+.social-proof-text {
+  font-family: var(--font-body);
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  line-height: 1;
+  margin: 0;
+}
+
+.social-proof-count {
+  font-variant-numeric: tabular-nums;
+}

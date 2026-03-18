@@ -1,0 +1,123 @@
+.email-form {
+  width: 100%;
+}
+
+/* ── Row (input + button) ── */
+.email-form-row {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+@media (min-width: 640px) {
+  .email-form-row {
+    flex-direction: row;
+    gap: 10px;
+  }
+
+  .email-field-wrap {
+    flex: 1 1 65%;
+  }
+
+  .btn-submit {
+    flex: 1 1 35%;
+  }
+}
+
+/* Centered variant (CTA section) */
+.email-form--centered .email-form-row {
+  max-width: 440px;
+  margin: 0 auto;
+}
+
+/* ── Input ── */
+.email-input {
+  width: 100%;
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 14px 16px;
+  font-size: 15px;
+  font-weight: 400;
+  color: var(--text-primary);
+  outline: none;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.email-input::placeholder {
+  color: var(--text-dim);
+}
+
+.email-input:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(66, 210, 119, 0.08);
+}
+
+.email-input--error {
+  border-color: var(--error) !important;
+}
+
+.email-input--error:focus {
+  box-shadow: 0 0 0 3px rgba(232, 115, 111, 0.08);
+}
+
+.email-input:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* ── Submit button ── */
+.btn-submit {
+  width: 100%;
+  background: var(--accent);
+  color: #1f1f1f;
+  border: none;
+  border-radius: var(--radius-md);
+  padding: 14px 20px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.btn-submit:hover:not(:disabled) {
+  background: var(--accent-bright);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(66, 210, 119, 0.2);
+}
+
+.btn-submit:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.btn-submit:disabled {
+  cursor: not-allowed;
+  opacity: 0.8;
+}
+
+/* ── Error text ── */
+.email-error {
+  margin-top: 8px;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--error);
+}
+
+/* ── Loading dots ── */
+.loading-dots {
+  display: inline-flex;
+  align-items: center;
+}
+
+.dot {
+  animation: dot-blink 1.2s infinite;
+}
+.dot-1 { animation-delay: 0s; }
+.dot-2 { animation-delay: 0.2s; }
+.dot-3 { animation-delay: 0.4s; }
+
+@keyframes dot-blink {
+  0%, 80%, 100% { opacity: 0.2; }
+  40%            { opacity: 1;   }
+}

@@ -1,0 +1,173 @@
+.card-wrap {
+  position: relative;
+}
+
+/* ── Card shell ── */
+.card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 28px;
+  box-shadow: 0 24px 64px rgba(0,0,0,0.35);
+  transform: perspective(800px) rotateY(-2deg) rotateX(1deg);
+  transition: transform 0.4s ease;
+  cursor: default;
+}
+
+.card:hover {
+  transform: perspective(800px) rotateY(0deg) rotateX(0deg);
+}
+
+/* ── Label ── */
+.card-label {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  margin-bottom: 8px;
+}
+
+/* ── Total row ── */
+.card-total {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  margin-bottom: 24px;
+  min-height: 48px;          /* prevent layout shift during animation */
+}
+
+.card-amount {
+  font-family: var(--font-body);
+  font-size: 34px;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  color: var(--text-primary);
+  font-variant-numeric: tabular-nums;
+  display: inline-block;     /* needed for transform animations */
+}
+
+.card-change {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--accent);
+  flex-shrink: 0;
+}
+
+/* ── Asset rows ── */
+.card-assets {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-bottom: 20px;
+}
+
+.asset-row {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.asset-meta {
+  display: flex;
+  justify-content: space-between;
+}
+
+.asset-name {
+  font-size: 13px;
+  color: var(--text-secondary);
+  font-weight: 400;
+}
+
+.asset-value {
+  font-size: 13px;
+  color: var(--text-dim);
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+}
+
+.asset-track {
+  height: 6px;
+  background: rgba(255,255,255,0.06);
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.asset-fill {
+  height: 100%;
+  border-radius: 3px;
+  transform-origin: left;
+  /* Start collapsed, animate to full width on load */
+  animation: bar-grow 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes bar-grow {
+  from { transform: scaleX(0); }
+  to   { transform: scaleX(1); }
+}
+
+/* ── Footer ── */
+.card-divider {
+  height: 1px;
+  background: var(--border);
+  margin-bottom: 14px;
+}
+
+.card-regions {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  display: block;
+}
+
+.region-active {
+  color: var(--text-primary);
+}
+
+.region-dim {
+  color: var(--text-dim);
+}
+
+.region-sep {
+  color: var(--text-dim);
+}
+
+/* ── Ticker animations ── */
+
+/* Exit: slide up + fade out */
+.anim-exit {
+  animation: ticker-exit 0.3s ease forwards;
+}
+
+/* Enter: slide up from below + fade in */
+.anim-enter {
+  animation: ticker-enter 0.3s ease forwards;
+}
+
+@keyframes ticker-exit {
+  from { opacity: 1; transform: translateY(0); }
+  to   { opacity: 0; transform: translateY(-8px); }
+}
+
+@keyframes ticker-enter {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Reflection ── */
+.card-reflection {
+  position: absolute;
+  left: 4px;
+  right: 4px;
+  top: 100%;
+  height: 80px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  transform: scaleY(-1) translateY(-2px);
+  transform-origin: top;
+  opacity: 0.04;
+  -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,0.8), transparent);
+  mask-image: linear-gradient(to bottom, rgba(0,0,0,0.8), transparent);
+  pointer-events: none;
+}
