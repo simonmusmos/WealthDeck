@@ -161,23 +161,20 @@ export default function Survey() {
       <Background />
       <div className="survey-layout">
 
-        {/* ── Top bar ── */}
-        <header className="survey-topbar">
-          <span className="survey-logo">WealthDeck</span>
+        {/* ── Progress bar + skip ── */}
+        <div className="survey-progress-row">
+          <div
+            className="survey-progress-track"
+            role="progressbar"
+            aria-valuenow={PROGRESS[displayStep]}
+            aria-valuemin={0}
+            aria-valuemax={100}
+          >
+            <div className="survey-progress-fill" style={{ width: `${PROGRESS[displayStep]}%` }} />
+          </div>
           <button className="survey-skip-link" onClick={skip}>
-            Skip to waitlist →
+            Skip
           </button>
-        </header>
-
-        {/* ── Progress bar ── */}
-        <div
-          className="survey-progress-track"
-          role="progressbar"
-          aria-valuenow={PROGRESS[displayStep]}
-          aria-valuemin={0}
-          aria-valuemax={100}
-        >
-          <div className="survey-progress-fill" style={{ width: `${PROGRESS[displayStep]}%` }} />
         </div>
 
         {/* ── Question ── */}

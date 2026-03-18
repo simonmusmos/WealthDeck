@@ -15,26 +15,10 @@
   flex-direction: column;
 }
 
-/* ── Top bar ── */
-.confirmed-topbar {
-  height: 60px;
-  display: flex;
-  align-items: center;
-  flex-shrink: 0;
-}
-
-.confirmed-logo {
-  font-family: var(--font-display);
-  font-size: 18px;
-  font-weight: 700;
-  color: var(--text-primary);
-  letter-spacing: -0.02em;
-}
-
-/* ── Main ── */
+/* ── Main — 16px top + 52px nav + 48px gap ── */
 .confirmed-main {
   flex: 1;
-  padding-top: 60px;
+  padding-top: 120px;
 }
 
 /* ── Page load animation keyframes ── */
@@ -363,7 +347,7 @@
 /* ── Desktop ── */
 @media (min-width: 640px) {
   .confirmed-main {
-    padding-top: 100px;
+    padding-top: 120px;
   }
 
   .confirmed-number {

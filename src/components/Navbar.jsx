@@ -1,50 +1,33 @@
-import { useEffect, useState, useRef } from 'react'
+import { useLocation, Link, useNavigate } from 'react-router-dom'
 import './Navbar.css'
 
-export default function Navbar({ heroRef }) {
-  const [sticky, setSticky] = useState(false)
+export default function Navbar() {
+  const location = useLocation()
+  const navigate  = useNavigate()
+  const isHome    = location.pathname === '/'
 
-  useEffect(() => {
-    if (!heroRef?.current) return
+  if (location.pathname === '/survey') return null
 
-    const observer = new IntersectionObserver(
-      ([entry]) => setSticky(!entry.isIntersecting),
-      { threshold: 0 }
-    )
-    observer.observe(heroRef.current)
-    return () => observer.disconnect()
-  }, [heroRef])
-
-  const scrollToForm = () => {
-    const input = document.getElementById('hero-email')
-    if (input) {
-      input.scrollIntoView({ behavior: 'smooth', block: 'center' })
-      setTimeout(() => input.focus(), 400)
+  const handleCta = () => {
+    if (isHome) {
+      const input = document.getElementById('hero-email')
+      if (input) {
+        input.scrollIntoView({ behavior: 'smooth', block: 'center' })
+        setTimeout(() => input.focus(), 400)
+        return
+      }
     }
+    navigate('/')
   }
 
   return (
-    <>
-      {/* Static nav (always rendered, part of page flow) */}
-      <nav className="navbar static-nav">
-        <NavContent onCta={scrollToForm} />
-      </nav>
-
-      {/* Sticky nav (slides in when hero leaves viewport) */}
-      <nav className={`navbar sticky-nav ${sticky ? 'visible' : ''}`} aria-hidden={!sticky}>
-        <NavContent onCta={scrollToForm} />
-      </nav>
-    </>
-  )
-}
-
-function NavContent({ onCta }) {
-  return (
-    <div className="navbar-inner">
-      <span className="navbar-logo">WealthDeck</span>
-      <button className="navbar-cta" onClick={onCta}>
-        Get early access
-      </button>
-    </div>
+    <nav className="site-nav">
+      <div className="site-nav-inner">
+        <Link to="/" className="site-nav-logo">WealthDeck</Link>
+        <button className="site-nav-cta" onClick={handleCta}>
+          Get early access
+        </button>
+      </div>
+    </nav>
   )
 }

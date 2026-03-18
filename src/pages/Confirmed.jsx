@@ -297,10 +297,6 @@ export default function Confirmed() {
       <Background />
       <div className="confirmed-layout">
 
-        <header className="confirmed-topbar">
-          <Link to="/" className="confirmed-logo">WealthDeck</Link>
-        </header>
-
         <main className="confirmed-main">
 
           {/* Position hero */}

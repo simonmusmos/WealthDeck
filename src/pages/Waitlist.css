@@ -21,8 +21,9 @@
 }
 
 /* ── Hero ── */
+/* 12px nav-top + 48px nav-height + 44px gap (mobile) */
 .hero {
-  padding: 32px 0 28px;
+  padding: 104px 0 28px;
 }
 
 .hero-inner {
@@ -192,7 +193,8 @@
 /* ── Desktop layout ── */
 @media (min-width: 960px) {
   .hero {
-    padding: 48px 0 64px;
+    /* 16px nav-top + 52px nav-height + 48px gap */
+    padding: 116px 0 64px;
   }
 
   .hero-inner {

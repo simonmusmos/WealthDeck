@@ -1,8 +1,7 @@
-import { useRef, useState } from 'react'
+import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useApp } from '../context/AppContext'
 import Background from '../components/Background'
-import Navbar from '../components/Navbar'
 import EmailForm from '../components/EmailForm'
 import ProductCard from '../components/ProductCard'
 import Toast from '../components/Toast'
@@ -33,7 +32,6 @@ const HEADLINES = {
 
 export default function Waitlist() {
   const { utmParams } = useApp()
-  const heroRef = useRef(null)
   const [toast, setToast] = useState('')
 
   const headlineKey = utmParams.h && HEADLINES[utmParams.h] ? utmParams.h : 'default'
@@ -44,10 +42,9 @@ export default function Waitlist() {
       <Background />
 
       <div className="waitlist-content">
-        <Navbar heroRef={heroRef} />
 
         {/* ── Hero ── */}
-        <section className="hero" ref={heroRef}>
+        <section className="hero">
           <div className="container">
             <div className="hero-inner">
 
