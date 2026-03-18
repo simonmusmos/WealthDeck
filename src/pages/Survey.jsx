@@ -60,8 +60,8 @@ const PROGRESS = [25, 50, 75, 100]
 
 // ── Component ─────────────────────────────────────────────────────────────────
 export default function Survey() {
-  const navigate       = useNavigate()
-  const { signupData } = useApp()
+  const navigate                       = useNavigate()
+  const { signupData, setSurveyAnswers } = useApp()
 
   const activeSignup = signupData ?? { id: 'dev', email: 'you@email.com', position: 1 }
 
@@ -111,11 +111,18 @@ export default function Survey() {
 
     if (nextStep >= TOTAL) {
       // TODO: UPDATE waitlist_signups SET survey_completed = true
+      setSurveyAnswers({
+        region:         answers.region        ?? null,
+        assetTypes:     answers.assets        ?? [],
+        painPoint:      answers.frustration   ?? null,
+        currentTools:   answers.current_tool  ?? [],
+        surveyCompleted: true,
+      })
       navigate('/confirmed')
       return
     }
     transition(nextStep)
-  }, [hasSelection, step, transition, navigate])
+  }, [hasSelection, step, answers, transition, navigate, setSurveyAnswers])
 
   // ── Back ──
   const goBack = useCallback(() => {
@@ -126,6 +133,13 @@ export default function Survey() {
   // ── Skip ──
   const skip = () => {
     // TODO: UPDATE waitlist_signups SET survey_completed = false
+    setSurveyAnswers({
+      region:          answers.region       ?? null,
+      assetTypes:      answers.assets       ?? [],
+      painPoint:       answers.frustration  ?? null,
+      currentTools:    answers.current_tool ?? [],
+      surveyCompleted: false,
+    })
     navigate('/confirmed')
   }
 

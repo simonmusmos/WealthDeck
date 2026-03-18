@@ -55,6 +55,20 @@ export async function saveSurveyAnswers(id, answers, survey_completed = true) {
 }
 
 /**
+ * Mark the welcome email as sent to prevent duplicate Loops triggers.
+ * Requires the `email_sent` boolean column on waitlist_signups.
+ * Schema: ALTER TABLE waitlist_signups ADD COLUMN email_sent boolean DEFAULT false;
+ */
+export async function markEmailSent(id) {
+  const { error } = await supabase
+    .from('waitlist_signups')
+    .update({ email_sent: true })
+    .eq('id', id)
+
+  return { error }
+}
+
+/**
  * Fetch the total waitlist count (public, no email data exposed).
  * Returns the count as a number, or null on error.
  */

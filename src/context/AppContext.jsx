@@ -9,8 +9,9 @@ export function AppProvider({ children }) {
     utm_campaign: null,
     h: null,
   })
-  const [signupData, setSignupData] = useState(null) // { email, id, position }
-  const [draftEmail, setDraftEmail] = useState('')    // shared across all email forms
+  const [signupData, setSignupData] = useState(null)   // { email, id, position, emailSent? }
+  const [draftEmail, setDraftEmail] = useState('')     // shared across all email forms
+  const [surveyAnswers, setSurveyAnswers] = useState(null) // { region, assetTypes, painPoint, currentTools, surveyCompleted }
 
   useEffect(() => {
     const params = new URLSearchParams(window.location.search)
@@ -23,7 +24,7 @@ export function AppProvider({ children }) {
   }, [])
 
   return (
-    <AppContext.Provider value={{ utmParams, signupData, setSignupData, draftEmail, setDraftEmail }}>
+    <AppContext.Provider value={{ utmParams, signupData, setSignupData, draftEmail, setDraftEmail, surveyAnswers, setSurveyAnswers }}>
       {children}
     </AppContext.Provider>
   )
